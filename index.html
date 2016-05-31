@@ -64,7 +64,7 @@
 			var mm = new Date().getMonth()+1;
 			var dd = new Date().getDate();
 			var d = new Date();
-			var h = addZero(d.getUTCHours()+8);
+			var h = addZero((d.getUTCHours()+8)>24?1:d.getUTCHours()+8);
 			var m = addZero(d.getUTCMinutes());
 			var s = addZero(d.getUTCSeconds());
 			return yyyy+'/'+mm+'/'+dd+' '+h+':'+m+':'+s;
