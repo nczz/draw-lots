@@ -99,6 +99,8 @@
 		function getUnqueNum(min,max){
 			var flag = true;
 			var r = getRandomInt(min, max);
+			if (qArr.length==pArr.length)
+				qArr = [];
 			while(flag){
 				if ($.inArray(r,qArr) != -1){
 					if (qArr.length==max){
@@ -109,9 +111,9 @@
 				} else {
 					flag = false;
 					qArr.push(r);
-					return r;
 				}	
 			}
+			return r;
 		}
 		$(document).ready(function(){
 			$('#import').click(function(){
