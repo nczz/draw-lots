@@ -141,10 +141,14 @@
 			});
 
 			$('#pickup_Unque').click(function(){
+				if (qArr.length==pArr.length){
+					$('#show').html($('#show').html()+'<br/><font color="red">新回合</font><br/>');
+				}
 				randPickUp(pArr,1);
 			});
 
 			$('#clear').click(function(){
+				qArr = [];
 				$('#show').html('');
 			});
 		});
