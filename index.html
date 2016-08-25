@@ -41,6 +41,7 @@
 					<button id="import" class="btn">匯入</button><br />
 					<button id="pickup" class="btn" style="display:none">抽籤</button><br/>
 					<button id="pickup_Unque" class="btn" style="display:none">不重複抽籤</button><br />
+					<button id="pickup_Unque80" class="btn" style="display:none">替滑鼠健康著想之，帥啊老爹不重複抽籤80筆</button><br />
 					<button id="clear" class="btn" style="display:none">清除內容</button>
 				</div>
 				<div id="show" class="col-xs-6 col-md-6"></div>
@@ -131,6 +132,7 @@
 					$('#show').html('');
 					$('#pickup').show();
 					$('#pickup_Unque').show();
+					$('#pickup_Unque80').show();
 					$('#clear').show();
 					$('#tips').hide();
 				});
@@ -146,7 +148,11 @@
 				}
 				randPickUp(pArr,1);
 			});
-
+			$('#pickup_Unque80').click(function(){
+				for (var i=0;i<80;++i){
+					$('#pickup_Unque').trigger('click');
+				}
+			});
 			$('#clear').click(function(){
 				qArr = [];
 				$('#show').html('');
