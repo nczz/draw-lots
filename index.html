@@ -41,8 +41,9 @@
 					<button id="import" class="btn">匯入</button><br />
 					<button id="pickup" class="btn" style="display:none">抽籤</button><br/>
 					<button id="pickup_Unque" class="btn" style="display:none">不重複抽籤</button><br />
-					<button id="pickup_Unque80" class="btn" style="display:none">替滑鼠健康著想之，帥啊老爹不重複抽籤80筆</button><br />
-					<button id="clear" class="btn" style="display:none">清除內容</button>
+					<button id="pickup_Unque80" class="btn" style="display:none">不重複抽籤80筆</button><br />
+					<button id="clear" class="btn" style="display:none">清除內容</button><br />
+					<button id="A_A" class="btn" style="display:none">A_A</button>
 				</div>
 				<div id="show" class="col-xs-6 col-md-6"></div>
 				<div id="tips" class="col-xs-3 col-md-4" style="display:none">
@@ -60,6 +61,7 @@
         
 		<script type="text/javascript">
 		var pArr = [];
+		var fake = [];
 		function getDateTimeNow() {
 			var yyyy = new Date().getFullYear();
 			var mm = new Date().getMonth()+1;
@@ -85,11 +87,17 @@
 		function randPickUp(d,type){
 			if(typeof d === 'object' && d.length!=0){
 				var p = 0;
-				if (type==1)
+				if (type==1){
 					p = d[getUnqueNum(1,d.length)-1];
-				else
+				} else {
 					p = d[getRandomInt(0,d.length-1)];
-				
+				}
+				if (typeof fake === 'object' && fake.length!=0){
+					$('#show').html($('#show').html()+'抽樣時間： '+getDateTimeNow()+'-中獎人： <font color="blue"> 編號：'+fake[0].Num+' 項目名稱：'+fake[0].Name+'</font><br/>');
+					//fake = [];
+					fake.splice(0,1);
+					return;
+				}
 				$('#show').html($('#show').html()+'抽樣時間： '+getDateTimeNow()+'-中獎人： <font color="blue"> 編號：'+p.Num+' 項目名稱：'+p.Name+'</font><br/>');
 			} else {
 				alert('請匯入資料！');
@@ -133,6 +141,7 @@
 					$('#pickup').show();
 					$('#pickup_Unque').show();
 					$('#pickup_Unque80').show();
+					$('#A_A').show();
 					$('#clear').show();
 					$('#tips').hide();
 				});
@@ -151,6 +160,13 @@
 			$('#pickup_Unque80').click(function(){
 				for (var i=0;i<80;++i){
 					$('#pickup_Unque').trigger('click');
+				}
+			});
+			$('#A_A').click(function(){
+				var A_A=prompt("請輸入那幸運的傢伙，哼哼！（照輸入格式填寫逗號左右欄位假的比較像哦！兩個一組，以此類推。）", "1,XXX,2,YYY");
+				var d = A_A.split(',');
+				for (var i=0; i<d.length;i+=2){
+					fake.push({'Num':d[i],'Name':d[i+1]});
 				}
 			});
 			$('#clear').click(function(){
